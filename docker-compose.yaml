@@ -71,7 +71,7 @@ networks:
   external: false # true if manually created network using network cmnd
 
 volumes:
-- mongodb # docker volume create mongodb. /var/lib/docker/volumes
-- redis
-- mysql
-- rabbitmq
+ mongodb: # docker volume create mongodb. /var/lib/docker/volumes
+ redis:
+ mysql:
+ rabbitmq:
