@@ -1,4 +1,4 @@
-service:
+services:
   catalogue:
     image: catalogue:v1
     container_name: catalogue
