@@ -1,15 +1,19 @@
-FROM node:20.19-alpine3.21 AS build 
+FROM node:20.19-alpine3.22 AS build 
 WORKDIR /opt/server
 COPY package.json .
 COPY *.js .
 # this may add extra cache memory
-RUN npm install
+RUN npm install 
 
-FROM node:20.19-alpine3.21
+FROM node:20.19-alpine3.22
 # Create a group and user
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
 WORKDIR /opt/server
 COPY --from=build /opt/server /opt/server
+EXPOSE 8080
+LABEL com.project="roboshop" \
+      component="catalogue" \
+      created_by="kiransaiveerandi"
 ENV MONGO="true" \
     MONGO_URL=""mongodb://mongodb:27017/catalogue""
 RUN chown -R roboshop:roboshop /opt/server
